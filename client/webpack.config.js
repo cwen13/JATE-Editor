@@ -22,13 +22,35 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-	template:"",
-	title:"Webpack Plugin",
+	template:"./index.html",
+	title:"JATE Text editor",
+      }),
+      new InjectManifest({
+	swSrc:"./src-sw.js",
+	swDest: "src-sw.js"
       }),
       new MiniCssExtractPlugin(),
-      new WorkboxPlugin.GenerateSW()
+      new WebpackPwaManifest({
+	fingerprints: false,
+        inject: true,
+        name: "Text Editor",
+        short_name: "J.A.T.E.",
+        description: "Takes notes with JAvascript highlighting!",
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: './',
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('favicon.ico'),
+            sizes: [96, 128,  256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+	
+      })
     ],
-
+    
     module: {
       rules: [
 	{
