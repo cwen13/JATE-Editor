@@ -4,7 +4,7 @@ const butInstall = document.getElementById('buttonInstall');
 window.addEventListener('beforeinstallprompt', (event) => {
 
     // Store the triggered events
-  window.deferredPrompt = event;
+  window.prompt(event);
   
   // Remove the hidden class from the button.
   butInstall.classList.toggle('hidden', false);
